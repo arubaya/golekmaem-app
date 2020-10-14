@@ -109,7 +109,7 @@ const TemplateCreator = {
     `;
   },
 
-  likeButton() {
+  likeRestaurantButton() {
     return `
     <button aria-label="suka restaurant ini" id="likeButton" class="like">
       <i class="material-icons-round" aria-hidden="true">favorite_border</i>
@@ -117,7 +117,7 @@ const TemplateCreator = {
     `;
   },
 
-  likedButton() {
+  unlikeRestaurantButton() {
     return `
     <button aria-label="tidak suka restaurant ini" id="likeButton" class="like">
       <i class="material-icons-round" aria-hidden="true">favorite</i>
