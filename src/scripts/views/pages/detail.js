@@ -19,7 +19,7 @@ const Detail = {
         <div id="tabHeader">
           <button class="button-tab active">Makanan</button>
           <button class="button-tab">Minuman</button>
-          <button class="button-tab">Ulasan</button>
+          <button id="reviewTab" class="button-tab">Ulasan</button>
           <button class="button-tab">Deskripsi</button>
         </div>
         <div id="tabBody">
@@ -82,13 +82,12 @@ const Detail = {
     restaurant.menus.drinks.forEach((drink) => {
       drinksBody.innerHTML += TemplateCreator.menuItem(drink.name, 'local_cafe');
     });
-    restaurant.consumerReviews.forEach((review) => {
+    restaurant.customerReviews.forEach((review) => {
       reviewsBody.innerHTML += TemplateCreator.reviewItem(review);
     });
     restaurant.categories.forEach((category) => {
       document.getElementById('categoryText').innerHTML += `<p>${category.name}</p>`;
     });
-    likeButtonContainer.innerHTML = TemplateCreator.likeButton();
 
     LikeButtonPresenter.init({
       likeButtonContainer: document.querySelector('#likeButtonContainer'),

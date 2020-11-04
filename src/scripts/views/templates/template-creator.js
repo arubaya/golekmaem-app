@@ -3,8 +3,8 @@ import API_ENDPOINT from '../../globals/api-endpoint';
 const TemplateCreator = {
   restaurantsItem(restaurant) {
     return `
-        <li>
-            <div class="card" crossorigin="anonymous" style="background-image: url('${API_ENDPOINT.PICTURE_SMALL + restaurant.pictureId}')" aria-label="Warung makan ${restaurant.name}">
+        <li class="restaurant-item">
+            <div class="card show lazyload" crossorigin="anonymous" style="background-image: url('${API_ENDPOINT.PICTURE_SMALL + restaurant.pictureId}')" aria-label="Warung makan ${restaurant.name || '-'}">
                 <div class="container">
                     <div class="card-header">
                         <div class="rating"><i class="material-icons-round">star</i>${restaurant.rating}</div>
@@ -12,9 +12,9 @@ const TemplateCreator = {
                     <div class="card-text">
                         <p class="city" >${restaurant.city}</p>
                         <a class="name" href="#/restaurant/:id${restaurant.id}">
-                            <h4>${restaurant.name}</h4>
+                            <h4>${restaurant.name || '-'}</h4>
                         </a>
-                        <p class="description" >${restaurant.description}</p>
+                        <p class="description" >${restaurant.description || '-'}</p>
                     </div>
                 </div
             </div>
@@ -22,11 +22,33 @@ const TemplateCreator = {
     `;
   },
 
-  jumbotronHome() {
-    $('#jumbotron').css({
-      'background-image': 'url(\'./images/hero-image.jpg\')',
-    });
+  restaurantsItemSkeleton(count) {
+    let template = '';
 
+    for (let i = 0; i < count; i += 1) {
+      template += `
+          <li>
+              <div class="card show" crossorigin="anonymous" style="background-color: grey" aria-label="Warung makan">
+                  <div class="container">
+                      <div class="card-header">
+                          <div class="rating"><i class="material-icons-round">star</i></div>
+                      </div>
+                      <div class="card-text">
+                          <p class="city" >Kota</p>
+                          <a class="name" href="#">
+                              <h4>Warung Makan</h4>
+                          </a>
+                          <p class="description" >Deskripsi</p>
+                      </div>
+                  </div
+              </div>
+          </li>
+      `;
+    }
+    return template;
+  },
+
+  jumbotronHome() {
     return `
         <div class="container">
         <div class="text-container">
@@ -38,10 +60,6 @@ const TemplateCreator = {
   },
 
   jumbotronFavorite() {
-    $('#jumbotron').css({
-      'background-image': 'url(\'./images/hero-image.jpg\')',
-    });
-
     return `
         <div class="container">
         <div class="text-container">

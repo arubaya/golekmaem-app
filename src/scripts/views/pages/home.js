@@ -15,19 +15,23 @@ const Home = {
         <!-- Content Recomended start -->
         <section id="contentRecomended">
             <h3 class="section-title" >Warung Makan Rekomendasi</h3>
-            <ul id="listContentRecomended"></ul>
+            <ul id="listContentRecomended">
+            ${TemplateCreator.restaurantsItemSkeleton(7)}
+            </ul>
         </section>
         <!-- Content Recomended end -->
         <!-- Content Favorite start -->
         <section id="contentFavorite">
             <h3 class="section-title" >Warung Makan Favorit</h3>
-            <ul id="listContentFavorite"></ul>
+            <ul id="listContentFavorite">
+            ${TemplateCreator.restaurantsItemSkeleton(7)}</ul>
         </section>
         <!-- Content Favorite end -->
         <!-- Content More start -->
         <section id="contentMore">
             <h3 class="section-title" >Warung Makan Lainnya</h3>
-            <ul id="listContentMore"></ul>
+            <ul id="listContentMore">
+            ${TemplateCreator.restaurantsItemSkeleton(7)}</ul>
         </section>
         <!-- Content More end -->
           `;
@@ -42,6 +46,10 @@ const Home = {
     const restaurantsContainerFavorite = document.querySelector('#listContentFavorite');
     const restaurantsContainerMore = document.querySelector('#listContentMore');
     const jumbotron = document.querySelector('#jumbotron');
+
+    restaurantsContainerRecomended.innerHTML = '';
+    restaurantsContainerFavorite.innerHTML = '';
+    restaurantsContainerMore.innerHTML = '';
 
     $(document).ready(() => {
       SliderInitiator.init('listContentRecomended');

@@ -13,6 +13,7 @@ class FavoriteRestaurantSearchPresenter {
 
   async _searchRestaurants(latestQuery) {
     this._latestQuery = latestQuery.trim();
+    console.log(this._latestQuery);
 
     let foundRestaurants;
     if (this.latestQuery.length > 0) {
@@ -20,11 +21,12 @@ class FavoriteRestaurantSearchPresenter {
     } else {
       foundRestaurants = await this._favoriteRestaurants.getAllRestaurants();
     }
+    console.log(foundRestaurants);
     this._showFoundRestaurants(foundRestaurants);
   }
 
   _showFoundRestaurants(restaurants) {
-    this._view.showRestaurants(restaurants);
+    this._view.showFavoriteRestaurants(restaurants);
   }
 
   get latestQuery() {

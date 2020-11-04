@@ -1,7 +1,12 @@
 import FavoriteRestaurantIdb from '../../data/favorite-idb';
 import TemplateCreator from '../templates/template-creator';
-import SliderInitiator from '../../utils/slider-initiator';
+// import SliderInitiator from '../../utils/slider-initiator';
 import ScrollInitiator from '../../utils/scroll-initiator';
+import FavoriteRestaurantSearchView from './liked-restaurant/favorite-restaurant-search-view';
+import FavoriteRestaurantSearchPresenter from './liked-restaurant/favorite-restaurant-search-presenter';
+import FavoriteRestaurantShowPresenter from './liked-restaurant/favorite-restaurant-show-presenter';
+
+const view = new FavoriteRestaurantSearchView();
 
 const Favorite = {
   async render() {
@@ -15,28 +20,22 @@ const Favorite = {
     <!-- Content My Favorite start -->
     <div id="contentMyFavorite">
       <h3 class="section-title" >Warung Makan Favoritmu</h3>
-      <ul id="listContentMyFavorite"></ul>
+      <input id="query" type="text" placeholder="Cari warung makan...">
+      <div id="restaurants"></div>
     </div>
     <!-- Content My Favorite end -->
     `;
   },
 
   async afterRender() {
-    const restaurants = await FavoriteRestaurantIdb.getAllRestaurants();
+    new FavoriteRestaurantShowPresenter({ view, favoriteRestaurants: FavoriteRestaurantIdb });
+    new FavoriteRestaurantSearchPresenter({ favoriteRestaurants: FavoriteRestaurantIdb, view });
+
     document.documentElement.scrollTop = 0;
     ScrollInitiator.favoriteScroll();
 
-    const listContentMyFavorite = document.querySelector('#listContentMyFavorite');
     const jumbotron = document.querySelector('#jumbotron');
     jumbotron.innerHTML = TemplateCreator.jumbotronFavorite();
-
-    $(document).ready(() => {
-      SliderInitiator.init('listContentMyFavorite');
-    });
-
-    restaurants.forEach((restaurant) => {
-      listContentMyFavorite.innerHTML += TemplateCreator.restaurantsItem(restaurant);
-    });
   },
 };
 
