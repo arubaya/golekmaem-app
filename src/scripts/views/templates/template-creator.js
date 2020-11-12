@@ -4,19 +4,20 @@ const TemplateCreator = {
   restaurantsItem(restaurant) {
     return `
         <li class="restaurant-item">
-            <div class="card show lazyload" crossorigin="anonymous" style="background-image: url('${API_ENDPOINT.PICTURE_SMALL + restaurant.pictureId}')" aria-label="Warung makan ${restaurant.name || '-'}">
-                <div class="container">
-                    <div class="card-header">
-                        <div class="rating"><i class="material-icons-round">star</i>${restaurant.rating}</div>
-                    </div>
-                    <div class="card-text">
-                        <p class="city" >${restaurant.city}</p>
-                        <a class="name" href="#/restaurant/:id${restaurant.id}">
-                            <h4>${restaurant.name || '-'}</h4>
-                        </a>
-                        <p class="description" >${restaurant.description || '-'}</p>
-                    </div>
-                </div
+            <div class="card show">
+              <img class="img-background lazyload" data-src="${API_ENDPOINT.PICTURE_SMALL + restaurant.pictureId}" alt="Warung makan ${restaurant.name || '-'}">
+              <div class="container">
+                  <div class="card-header">
+                      <div class="rating"><i class="material-icons-round">star</i>${restaurant.rating}</div>
+                  </div>
+                  <div class="card-text">
+                      <p class="city" >${restaurant.city}</p>
+                      <a class="name" href="#/restaurant/:id${restaurant.id}">
+                          <h4>${restaurant.name || '-'}</h4>
+                      </a>
+                      <p class="description" >${restaurant.description || '-'}</p>
+                  </div>
+              </div
             </div>
         </li>
     `;

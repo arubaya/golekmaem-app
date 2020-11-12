@@ -50,16 +50,16 @@ describe('Searching restaurants', () => {
     it('should show - when the restaurant returned does not contain a name', (done) => {
       document.getElementById('restaurants')
         .addEventListener('restaurants:updated', () => {
-        const restaurantTitles = document.querySelectorAll('.name > h4');
-        expect(restaurantTitles.item(0).textContent).toEqual('-');
-     
-        done();
-      });
-     
+          const restaurantTitles = document.querySelectorAll('.name > h4');
+          expect(restaurantTitles.item(0).textContent).toEqual('-');
+
+          done();
+        });
+
       favoriteRestaurants.searchRestaurants.withArgs('film a').and.returnValues([
         { id: 444 },
       ]);
-     
+
       searchRestaurants('film a');
     });
 
@@ -167,9 +167,9 @@ describe('Searching restaurants', () => {
     it('should not show any restaurant', (done) => {
       document.getElementById('restaurants')
         .addEventListener('restaurants:updated', () => {
-        expect(document.querySelectorAll('.restaurant-item').length).toEqual(0);
-        done();
-      });
+          expect(document.querySelectorAll('.restaurant-item').length).toEqual(0);
+          done();
+        });
 
       favoriteRestaurants.searchRestaurants.withArgs('restaurant a').and.returnValues([]);
 
