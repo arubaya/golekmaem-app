@@ -1,6 +1,6 @@
 const CONFIG = {
   KEY: '12345',
-  BASE_URL: 'https://dicoding-restaurant-api.el.r.appspot.com/',
+  BASE_URL: 'https://restaurant-api.dicoding.dev/',
   CACHE_NAME: new Date().toISOString(),
   DATABASE_NAME: 'golekmaem-database',
   DATABASE_VERSION: 1,
